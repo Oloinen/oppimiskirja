@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Oppimispäiväkirja</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/stylesheets/oppikirja.css" />
+    
+  </head>
+  <body>
+    <div class="row">
+      <div class="container" id="contact">
+            <h1>Oppimispäiväkirja</h1>
+            <h3>Lisää ajatuksiasi tänne!</h3>
+            <fieldset>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              required="required"
+              placeholder="Nimi"
+            /></fieldset>
+            <fieldset>            
+            <input
+              type="text"
+              id="identification"
+              name="tunnus"
+              required="required"
+              placeholder="Tunniste"
+            /></fieldset>
+            <fieldset>
+            <input
+              type="text"
+              id="source"
+              name="source"
+              placeholder="Lähteet"
+            /></fieldset>
+            <fieldset>
+                <textarea
+                  id="description"
+                  name="description"
+                  required="required"
+                  placeholder="Kuvaile tänne">
+                </textarea>
+                </fieldset>
+            <div class="centerThis">
+            <fieldset>
+            <input
+              type="number"
+              id="timeTM"
+              name="timeToMaster"
+              placeholder="Aika hanskaamiseen"
+            />
+            <input
+              type="number"
+              id="timeS"
+              name="timeSpent"
+              placeholder="Käytetty aika"
+            /></fieldset>
+            <fieldset>
+            <input
+              type="date"
+              id="startL"
+              name="startLearn"
+              required="required"
+            />
+            <input type="date" id="dateC" />
+            </fieldset>
+          </div>
+            <fieldset>
+            <label>Merkintä valmis:</label>
+            <input type="checkbox" id="completion" />
+            </fieldset>
+            <fieldset>
+            <button onclick="lisaaTitle()">Luo uusi</button>
+            </fieldset>
+      </div>
+
+      <div class="cards">
+          <div class="cardContainer" id="cardContainer">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="heading">
+                      <h1>Title</h1>
+                    </div>
+                    <div class="content">
+                      <p>ID tulee tähän</p>
+                    </div>
+                  </div>
+                <div class="flip-card-back">
+                  <div class="descrip">
+                  <h1>Description</h1></div>
+                  <div class="backcontent">
+                    <p>back</p>
+                  </div>
+                  
+                  <p>We love that guy</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+    
+
+    <script src="/javascripts/oppikirja.js"></script>
+  </body>
+</html>
