@@ -47,7 +47,7 @@ async function lisaaTitle() {
     /*console.log(uusiTitle)
     console.log(JSON.stringify(dataJson));*/
 
-    const url = "http://localhost:3000/api/topics";
+    const url = "http://localhost:3000";
     fetch(url, {
         method: 'POST',
         body: dataJson,
@@ -64,6 +64,7 @@ async function lisaaTitle() {
 }
 
 async function haeTitlet() {
+    console.log('Tää mättää')
     fetch('http://localhost:3000/api/topics')
     .then(function(response) { return response.json(); })
     .then(function(titleLista) {

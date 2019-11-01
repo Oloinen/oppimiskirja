@@ -1,19 +1,21 @@
 var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser');
-const fs = require('fs');
 let app = express();
 app.use(bodyParser.json());
 let parser = bodyParser.urlencoded({ extended: true});
 const topic = require('../dbhandle/psqlbase');
+const cors = require('cors');
+app.use(cors());
 
-router
-.get('/', function(req, res, next) {
+router.route('/')
+.get((req, res, next) => {
+    console.log('Täällä')
     topic.getTopics(result => {
         res.json(result)
     })  
 })
-.post('/', (req, res) => {
+.post((req, res) => {
     topic.createTopic(req, result => {
         res.send(result);
     })
