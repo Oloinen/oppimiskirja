@@ -8,7 +8,7 @@ const topic = require('../dbhandle/psqlbase');
 const cors = require('cors');
 app.use(cors());
 
-router.route('/')
+/*router.route('/')
 .get((req, res, next) => {
     console.log('Täällä')
     topic.getTopics(result => {
@@ -19,7 +19,7 @@ router.route('/')
     topic.createTopic(req, result => {
         res.send(result);
     })
-})
+})*/
 
 router.route('/topics/:id')
 .get((req, res) => {

@@ -31,14 +31,13 @@ function getTopicById(req, callback) {
 
 function createTopic(req, callback) {
   const { title, description, timetomaster, timespent, source, startlearningdate, inprogress } = req.body;
-  console.log(req.body);
   pool.connect((err, client) => {
     client.query(
       "INSERT INTO topic (title, description, timetomaster, timespent, source, startlearningdate, inprogress) values ($1, $2, $3, $4, $5, $6, $7)",
       [title, description, timetomaster, timespent, source, startlearningdate, inprogress],
       (err, data) => {
         client.release();
-        callback("Topicit lisätty");
+        callback();
       }
     );
   });
