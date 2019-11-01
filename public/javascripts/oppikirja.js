@@ -47,7 +47,7 @@ async function lisaaTitle() {
     /*console.log(uusiTitle)
     console.log(JSON.stringify(dataJson));*/
 
-    const url = "http://localhost:3000/api/topics";
+    const url = "http://localhost:3000";
     fetch(url, {
         method: 'POST',
         body: dataJson,
@@ -55,7 +55,7 @@ async function lisaaTitle() {
         })
         .then(function(response) {
             haeTitlet();
-            if(response.status === 201) {
+            if(response.status == 200) {
                 console.log("luotu")
             } else {
                 console.log("virhe: ", response.statusText);
@@ -64,7 +64,7 @@ async function lisaaTitle() {
 }
 
 async function haeTitlet() {
-    fetch('http://localhost:3000/api/topics')
+    fetch('http://localhost:3000')
     .then(function(response) { return response.json(); })
     .then(function(titleLista) {
         console.log('Get toimii ja saa kiinni titlelistasta');
