@@ -5,8 +5,6 @@ let app = express();
 app.use(bodyParser.json());
 let parser = bodyParser.urlencoded({ extended: true});
 const topic = require('../dbhandle/psqlbase');
-const cors = require('cors');
-app.use(cors());
 
 /*router.route('/')
 .get((req, res, next) => {
@@ -21,17 +19,15 @@ app.use(cors());
     })
 })*/
 
-router.route('/topics/:id')
+router.route('/:id')
 .get((req, res) => {
     topic.getTopicById(req, result => {
-        res.status(200)
-            .json(result)
-            .end();
+            res.json(result);
     })
 })
 .delete((req, res) => {
     topic.deleteTopic(req, result => {
-        res.send(result);
+        res.status(200).end();
     })
 })
 .put((req, res) => {

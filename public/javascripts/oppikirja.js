@@ -55,7 +55,7 @@ async function lisaaTitle() {
         })
         .then(function(response) {
             haeTitlet();
-            if(response.status == 200) {
+            if(response.status == 201) {
                 console.log("luotu")
             } else {
                 console.log("virhe: ", response.statusText);

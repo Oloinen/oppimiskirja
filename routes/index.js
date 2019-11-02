@@ -14,8 +14,7 @@ router.route('/')
 })
 .post((req, res) => {
     topic.createTopic(req, result => {
-        res.json(result);
-        res.status(201);
+        res.status(201).end();
     })
 })
 
