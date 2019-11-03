@@ -30,14 +30,14 @@ function getTopicById(req, callback) {
 }
 
 function createTopic(req, callback) {
-  console.log(req.body.source)
+  console.log(req.body.timetomaster)
   const timets = req.body.timeToMaster;
   /*const { title, description, timetomaster, timespent, source, startlearningdate, inprogress } = req.body;*/
   pool.connect((err, client) => {
     client.query(
       /*"INSERT INTO topic (title, description, timetomaster, timespent, source, startlearningdate, inprogress) values ($1, $2, $3, $4, $5, $6, $7)",
       [req.body.title, description, timetomaster, timespent, source, startlearningdate, inprogress],*/
-      "INSERT INTO topic (title, description, timetomaster, timespent, source, startlearningdate, completiondate, inprogress) values ($1, $2, $3, $4, $5, $6, $7, $8)", [req.body.title, req.body.description, req.body.timeToMaster, req.body.timeSpent, req.body.source, req.body.startLearningDate, req.body.completionDate, req.body.inProgress],
+      "INSERT INTO topic (title, description, timetomaster, timespent, source, startdate, completiondate, inprogress) values ($1, $2, $3, $4, $5, $6, $7, $8)", [req.body.title, req.body.description, req.body.timetomaster, req.body.timespent, req.body.source, req.body.startdate, req.body.completiondate, req.body.inprogress],
       (err, data) => {
         client.release();
         callback();

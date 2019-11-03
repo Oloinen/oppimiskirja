@@ -13,15 +13,15 @@ window.onload = function WindowLoad(event) {
     haeTitlet();
 }
 
-function Title(title, description, timeToMaster, timespent, source, startLearningDate, inProgress, completionDate) {
+function Title(title, description, timetomaster, timespent, source, startdate, inprogress, completiondate) {
     this.title = title;
     this.description = description;
-    this.timeToMaster = timeToMaster;
-    this.timeSpent = timespent;
+    this.timetomaster = timetomaster || null;
+    this.timespent = timespent || null;
     this.source = source;
-    this.startLearningDate = startLearningDate;
-    this.inProgress = inProgress;
-    this.completionDate = completionDate;
+    this.startdate = startdate || null;
+    this.inprogress = inprogress;
+    this.completiondate = completiondate || null;
 }
 
 function createTitle() {
@@ -78,22 +78,34 @@ function paivitaLista(array) {
     function createList(titleRow, descRow, timeTRow, timeSRow, sourceRow, startRow, inPRow, compRow, idUni) {
         let card = document.createElement('div');
         let cardText = document.createElement('div');
-        let cardButtons = document.createElement('div'); /*(tänne title)*/
-        let cardBottom = document.createElement('div'); /*tänne p + id*/
-        /*let cardBack = document.createElement('div');
-        let cardBackDescrip = document.createElement('div'); /*Tänne h1 desc
-        let cardBackContent = document.createElement('div'); /*tänne p + source*/
+        let cardButtons = document.createElement('div'); 
+        let cardBottom = document.createElement('div'); 
+        let titleElement = document.createElement('h2');     
         card.classList.add("card");
         cardText.classList.add("card-text");
         cardButtons.classList.add("card-buttons");
         cardBottom.classList.add("card-bottom");
-        cardText.innerHTML = "<span class=\"title\">" + titleRow + "</span><span class=\"idrow\">" + idUni + "</span>";
-        cardButtons.innerHTML = '<button class=\"btnRemove\"><img src=\"stylesheets/trashbin.png\"></button><button class=\"btnEdit\"><img src=\"stylesheets/pencil3.png\"></button>';
+        card.id = idUni;
+        titleElement.innerHTML = titleRow;
+        cardButtons.innerHTML = '<button id=\"btnRemove\" onclick=\"removeThis('+idUni+')\" class=\"btnRemove\"><img src=\"stylesheets/trashbin.png\"></button><button id=\"btnEdit\" class=\"btnEdit\"><img src=\"stylesheets/pencil3.png\"></button>';
         cardBottom.innerHTML = "<p>"+startRow+"-"+compRow + " " + inPRow+"</p>";
+        cardText.append(cardButtons);
+        cardText.append(titleElement);
         card.append(cardText);
-        card.append(cardButtons);
         card.append(cardBottom);
         naytaLista.append(card);
+
+        card.onclick = function(e) {
+            if (e.target.id=="btnRemove" || e.target.id=="btnEdit") {
+                e.stopPropagation();
+            } else {
+            let modal = document.getElementById('myModal');
+            document.getElementById('modalP').innerHTML = 
+            "<h2>"+titleRow+"</h2><p>"+sourceRow+"<br>"+ descRow+"<br>Suunniteltu aika: "+timeTRow+"h<br>Käytetty aika: "+timeSRow+"h<br>"+startRow+" - "+compRow+"<br>"+inPRow+"</p>"
+            modal.style.display = "block";
+            console.log(e.target.id)
+            }
+        }
     }
 
     naytaLista.innerHTML = "";
@@ -105,13 +117,30 @@ function paivitaLista(array) {
         let timeTRow = otsake.timetomaster;
         let timeSRow = otsake.timespent;
         let sourceRow = otsake.source;
-        let startRow = new Date(otsake.startlearningdate).toLocaleDateString();
+        let startRow = new Date(otsake.startdate).toLocaleDateString();
         let inPRow = checkCheck(otsake.inprogress);
         let compRow = new Date(otsake.completiondate).toLocaleDateString();
 
         createList(titleRow, descRow, timeTRow, timeSRow, sourceRow, startRow, inPRow, compRow, idUni);
     })
 }
+
+
+let modal = document.getElementById('myModal');
+let span = document.getElementsByClassName('close')[0];
+
+span.onclick = function() {
+modal.style.display = "none";
+}
+    
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+    }
+}
+
+
+
 function checkCheck(check) {
     if (check == true) {
         return 'Completed'
@@ -139,20 +168,4 @@ async function removeThis(id) {
 }
 
 
-let modal = document.getElementById('myModal');
-let cardModal= document.getElementById('modalCard');
-let span = document.getElementsByClassName('close')[0];
 
-cardModal.onclick = function() {
-    modal.style.display = "block";
-}
-
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}

@@ -27,7 +27,7 @@ router.route('/:id')
 })
 .delete((req, res) => {
     topic.deleteTopic(req, result => {
-        res.status(200).end();
+        res.status(201).end();
     })
 })
 .put((req, res) => {

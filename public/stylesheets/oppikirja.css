@@ -19,18 +19,20 @@ body {
 	font-weight:300;
 	font-size: 12px;
 	line-height:30px;
-	color:#777;
-	background:rgb(255, 0, 157);
+	background: url("../images/redbubbles.jpg");
+	background-repeat: no-repeat;
+	background-size: 1550px 780px;
 }
 
 .container {
-	width: 30%;
+	width: 25%;
 	float: left;
-	background: rgb(247, 178, 218);
+	background: rgba(141, 8, 86, 0.7);
 	border-radius: 10px;
 	padding: 25px;
 	margin: 50px 40px;
 	min-width: 400px;
+	color: #777;
 }
 
 .centerThis {
@@ -40,16 +42,11 @@ body {
 #contact input[type="text"], #contact input[type="number"], #contact input[type="date"], #contact textarea, #contact button { font:400 12px/16px "Open Sans", Helvetica, Arial, sans-serif; }
 
 #contact h1 {
-	color: #F96;
+	color: rgb(248, 174, 136);
 	display: block;
 	font-size: 30px;
 	font-weight: 400;
-}
-
-#contact h3 {
-	margin:5px 0 15px;
-	display:block;
-	font-size:13px;
+	margin-bottom: 35px;
 }
 
 fieldset {
@@ -82,13 +79,25 @@ fieldset {
 	-webkit-transition:border-color 0.3s ease-in-out;
 	-moz-transition:border-color 0.3s ease-in-out;
 	transition:border-color 0.3s ease-in-out;
-	border:1px solid rgb(226, 33, 33);
+	border:1px solid rgb(33, 226, 178);
 }
 
 #contact textarea {
 	height:100px;
 	max-width:100%;
-  resize:none;
+  	resize:none;
+}
+
+.forCheckbox input {
+	vertical-align: middle;
+	margin-left: 10px;
+}
+
+.forCheckbox {
+	vertical-align: middle;
+	color: rgb(248, 174, 136) !important;
+	font-size: 1.25em;
+	font-weight: 400;
 }
 
 #contact button {
@@ -97,9 +106,10 @@ fieldset {
 	border:none;
 	background:rgb(238, 17, 146);
 	color:#FFF;
-	margin:0 0 5px;
+	margin:10px 0 0 0;
 	padding:10px;
 	font-size:15px;
+	border-radius: 2px;
 }
 
 #contact button[type="submit"]:hover {
@@ -129,67 +139,56 @@ fieldset {
 }
 
 .cardContainer {
-	width: 60%;
+	max-width: 60%;
 	float: left;
 	margin: 50px 0;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-content: space-around;
-	border: red solid 3px;
 }
 
 .card {
-	display: grid;
-	width: 200px;
-	min-height: 80px;
-	background: rgb(102, 255, 184);
+	width: 250px;
+	min-height: 45px;
+	background: rgb(238, 17, 146);
 	box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
-	border-radius: 5px;
+	border-radius: 6px;
 	margin: 0 10px 10px 40px;
-
 }
 
 .card-text {
-	grid-column-start: 1;
-	grid-column-end: 2;
-	grid-row: 1;
-	height: 50px;
-	width: 160px;
+	height: 35px;
 }
 
 .card-buttons {
-	grid-column-start: 2;
-	grid-column-end: 3;
-	grid-row: 1;
-	width: 40px;
-	height: 50px;
-	text-align: right;
+	float: right;
 }
 
 .card-bottom {
-	grid-column-start: 1;
-	grid-column-end: 3;
-	grid-row: 2;
 	min-height: 10px;
 }
 
 .btnRemove {
+	display: none;
 	height: 24px;
 	width: 24px;
 	background: none;
 	margin: 2px 2px 0 0;
 	border-radius: 4px;
-	display: inline-flex;
+	float: right;
+	border: none;
 }
 
 .btnEdit {
+	display: none;
 	border-radius: 4px;
 	height: 24px;
 	width: 24px;
-	background: rgb(102, 255, 184);
-	margin: 0 2px 0 0;
-	display: inline-block;
+	background: none;
+	margin: 2px 2px 0 0;
+	float: right;
+	border: none;
 }
 
 .btnEdit img {
@@ -199,7 +198,7 @@ fieldset {
 
 .btnRemove img {
 	height: 20px;
-	width: 20px;
+	width: 22px;
 }
 
 .modal {
@@ -230,20 +229,30 @@ fieldset {
   	font-weight: bold;
 }
 
+div.card:hover .btnRemove {
+	display: inline-block;
+	cursor: pointer;
+}
+
 .btnRemove:hover,
 .btnRemove:focus {
-	background-color: #F96;
+	background: rgb(182, 14, 112);
+	cursor: pointer;
+}
+
+div.card:hover .btnEdit {
+	display: inline-block;
 	cursor: pointer;
 }
 
 .btnEdit:hover,
 .btnEdit:focus {
-	background-color: #F96;
 	cursor: pointer;
+	background: rgb(182, 14, 112);
 }
 
 .card:hover {
-	background-color: aqua;
+	background-color: rgb(238, 17, 146, 0.6);
 }
 
 

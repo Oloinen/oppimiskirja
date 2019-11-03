@@ -9,10 +9,9 @@
     
   </head>
   <body>
-    <div class="row">
+    <div id="forModal" class="row">
       <div class="container" id="contact">
             <h1>Oppimispäiväkirja</h1>
-            <h3>Lisää ajatuksiasi tänne!</h3>
             <fieldset>
             <input
               type="text"
@@ -39,66 +38,40 @@
             <input
               type="number"
               id="timeTM"
-              name="timeToMaster"
+              name="timetomaster"
               placeholder="Aika hanskaamiseen"
             />
             <input
               type="number"
               id="timeS"
-              name="timeSpent"
+              name="timespent"
               placeholder="Käytetty aika"
             /></fieldset>
             <fieldset>
             <input
               type="date"
               id="startL"
-              name="startLearn"
+              name="startdate"
               required="required"
             />
             <input type="date" id="dateC" />
             </fieldset>
           </div>
-            <fieldset>
-            <label>Merkintä valmis:</label>
-            <input type="checkbox" id="completion" />
+            <fieldset class="forCheckbox">
+            <label for="progress"><input type="checkbox" id="completion" />
+            <span>Merkintä valmis</span></label>
             </fieldset>
             <fieldset>
             <button onclick="lisaaTitle()">Luo uusi</button>
             </fieldset>
       </div>
-
       <div class="cardContainer" id="cardContainer">
-        <div id="modalCard" class="card">
-            <div class="card-text">
-              <span class="title">Hellurei</span>
-              <span class="idrow">Lalala</span>
-            </div>
-            <div class="card-buttons">
-                <button class="btnRemove"><img src="stylesheets/trashbin.png"></button>
-                <button class="btnEdit"><img src="stylesheets/pencil3.png"></button>
-            </div>
-            <div class="card-bottom">
-              <p>Tänne pikkuteksti</p>
-            </div>    
-        </div>
-        <div class="card">
-            <div class="card-text">
-              <h2 class="title">Hellurei</h2>
-            </div>
-            <div class="card-buttons">
-              <button class="btnRemove"></button>
-              <button class="btnEdit"></button>
-            </div>
-            <div class="card-bottom">
-              <p>Tänne pikkuteksti</p>
-            </div>    
-        </div>
       </div>
 
       <div id="myModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
-          <p>Mun modaali</p>
+          <div id="modalP"></div>
         </div>
       </div>
     </div>
