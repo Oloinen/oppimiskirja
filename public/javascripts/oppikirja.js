@@ -1,5 +1,4 @@
 let titleField = document.getElementById('title');
-let tunnusField = document.getElementById('identification');
 let descField = document.getElementById('description');
 let timeTMField = document.getElementById('timeTM');
 let timeSField = document.getElementById('timeS');
@@ -14,22 +13,20 @@ window.onload = function WindowLoad(event) {
     haeTitlet();
 }
 
-function Title(title, tunnus, description, timeToMaster, timeSpent, source, startLearningDate, inProgress, completionDate) {
+function Title(title, description, timeToMaster, timespent, source, startLearningDate, inProgress, completionDate) {
     this.title = title;
-    this.tunnus = tunnus;
     this.description = description;
     this.timeToMaster = timeToMaster;
-    this.timeSpent = timeSpent;
+    this.timeSpent = timespent;
     this.source = source;
     this.startLearningDate = startLearningDate;
     this.inProgress = inProgress;
-    this.completionDate = completionDate
+    this.completionDate = completionDate;
 }
 
 function createTitle() {
     const title = new Title(
         titleField.value.trim(),
-        tunnusField.value.trim(),
         descField.value.trim(),
         timeTMField.value,
         timeSField.value,
@@ -38,6 +35,7 @@ function createTitle() {
         inProgress.checked,
         compDate.value
     );
+    console.log(title);
     return title;
 }
 
@@ -67,6 +65,7 @@ async function haeTitlet() {
     fetch('http://localhost:3000')
     .then(function(response) { return response.json(); })
     .then(function(titleLista) {
+        console.log(titleLista)
         console.log('Get toimii ja saa kiinni titlelistasta');
         paivitaLista(titleLista);
     })
@@ -76,31 +75,25 @@ function paivitaLista(array) {
 
     let naytaLista = document.getElementById('cardContainer');
    
-    function createList(titleRow, tunnusRow, descRow, timeTRow, timeSRow, sourceRow, startRow, inPRow, compRow, idUni) {
-        let flipCardDiv = document.createElement('div');
-        let cardInner = document.createElement('div');
-        let cardFront = document.createElement('div');
-        let cardFrontHeading = document.createElement('div'); /*(tänne title)*/
-        let cardFrontContent = document.createElement('div'); /*tänne p + id*/
-        let cardBack = document.createElement('div');
-        let cardBackDescrip = document.createElement('div'); /*Tänne h1 desc*/
+    function createList(titleRow, descRow, timeTRow, timeSRow, sourceRow, startRow, inPRow, compRow, idUni) {
+        let card = document.createElement('div');
+        let cardText = document.createElement('div');
+        let cardButtons = document.createElement('div'); /*(tänne title)*/
+        let cardBottom = document.createElement('div'); /*tänne p + id*/
+        /*let cardBack = document.createElement('div');
+        let cardBackDescrip = document.createElement('div'); /*Tänne h1 desc
         let cardBackContent = document.createElement('div'); /*tänne p + source*/
-        flipCardDiv.classList.add("flip-card");
-        cardInner.classList.add("flip-card-inner");
-        cardFront.classList.add("flip-card-front");
-        cardBack.classList.add("flip-card-back");
-        cardFrontHeading.innerHTML = "<div class=\"heading\"><h1>" + titleRow + "</h1></div>";
-        cardFrontContent.innerHTML = "<div class=\"content\"><p>" + tunnusRow + "<p></div>"
-        cardBackDescrip.innerHTML = "<div class=\"descrip\"><h1>Description</h1></div>";
-        cardBackContent.innerHTML = "<div class:\"backcontent\"><p>" + descRow + "</p></div>";
-        flipCardDiv.append(cardInner);
-        cardInner.append(cardFront);
-        cardFront.append(cardFrontHeading);
-        cardFront.append(cardFrontContent);
-        cardInner.append(cardBack);
-        cardBack.append(cardBackDescrip);
-        cardBackDescrip.append(cardBackContent);
-        naytaLista.append(flipCardDiv);
+        card.classList.add("card");
+        cardText.classList.add("card-text");
+        cardButtons.classList.add("card-buttons");
+        cardBottom.classList.add("card-bottom");
+        cardText.innerHTML = "<span class=\"title\">" + titleRow + "</span><span class=\"idrow\">" + idUni + "</span>";
+        cardButtons.innerHTML = '<button class=\"btnRemove\"><img src=\"stylesheets/trashbin.png\"></button><button class=\"btnEdit\"><img src=\"stylesheets/pencil3.png\"></button>';
+        cardBottom.innerHTML = "<p>"+startRow+"-"+compRow + " " + inPRow+"</p>";
+        card.append(cardText);
+        card.append(cardButtons);
+        card.append(cardBottom);
+        naytaLista.append(card);
     }
 
     naytaLista.innerHTML = "";
@@ -108,16 +101,15 @@ function paivitaLista(array) {
     array.forEach(function(otsake) {
         let idUni = otsake.id;
         let titleRow = otsake.title;
-        let tunnusRow = otsake.tunnus;
         let descRow = otsake.description;
-        let timeTRow = otsake.timeToMaster;
-        let timeSRow = otsake.timeSpent;
+        let timeTRow = otsake.timetomaster;
+        let timeSRow = otsake.timespent;
         let sourceRow = otsake.source;
-        let startRow = new Date(otsake.startLearningDate).toLocaleDateString();
-        let inPRow = checkCheck(otsake.inProgress);
-        let compRow = new Date(otsake.completionDate).toLocaleDateString();
+        let startRow = new Date(otsake.startlearningdate).toLocaleDateString();
+        let inPRow = checkCheck(otsake.inprogress);
+        let compRow = new Date(otsake.completiondate).toLocaleDateString();
 
-        createList(titleRow, tunnusRow, descRow, timeTRow, timeSRow, sourceRow, startRow, inPRow, compRow, idUni);
+        createList(titleRow, descRow, timeTRow, timeSRow, sourceRow, startRow, inPRow, compRow, idUni);
     })
 }
 function checkCheck(check) {
@@ -146,3 +138,21 @@ async function removeThis(id) {
     })
 }
 
+
+let modal = document.getElementById('myModal');
+let cardModal= document.getElementById('modalCard');
+let span = document.getElementsByClassName('close')[0];
+
+cardModal.onclick = function() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}

@@ -18,16 +18,7 @@
               type="text"
               id="title"
               name="title"
-              required="required"
               placeholder="Nimi"
-            /></fieldset>
-            <fieldset>            
-            <input
-              type="text"
-              id="identification"
-              name="tunnus"
-              required="required"
-              placeholder="Tunniste"
             /></fieldset>
             <fieldset>
             <input
@@ -40,7 +31,6 @@
                 <textarea
                   id="description"
                   name="description"
-                  required="required"
                   placeholder="Kuvaile tänne">
                 </textarea>
                 </fieldset>
@@ -77,30 +67,41 @@
             </fieldset>
       </div>
 
-          <div class="cardContainer" id="cardContainer">
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <div class="heading">
-                      <h1>Title</h1>
-                    </div>
-                    <div class="content">
-                      <p>ID tulee tähän</p>
-                    </div>
-                  </div>
-                <div class="flip-card-back">
-                  <div class="descrip">
-                  <h1>Description</h1></div>
-                  <div class="backcontent">
-                    <p>back</p>
-                  </div>
-                  
-                  <p>We love that guy</p>
-                </div>
-              </div>
+      <div class="cardContainer" id="cardContainer">
+        <div id="modalCard" class="card">
+            <div class="card-text">
+              <span class="title">Hellurei</span>
+              <span class="idrow">Lalala</span>
             </div>
-          </div>
-          </div>
+            <div class="card-buttons">
+                <button class="btnRemove"><img src="stylesheets/trashbin.png"></button>
+                <button class="btnEdit"><img src="stylesheets/pencil3.png"></button>
+            </div>
+            <div class="card-bottom">
+              <p>Tänne pikkuteksti</p>
+            </div>    
+        </div>
+        <div class="card">
+            <div class="card-text">
+              <h2 class="title">Hellurei</h2>
+            </div>
+            <div class="card-buttons">
+              <button class="btnRemove"></button>
+              <button class="btnEdit"></button>
+            </div>
+            <div class="card-bottom">
+              <p>Tänne pikkuteksti</p>
+            </div>    
+        </div>
+      </div>
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Mun modaali</p>
+        </div>
+      </div>
+    </div>
         
     
 
