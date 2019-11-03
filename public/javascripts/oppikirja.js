@@ -87,7 +87,7 @@ function paivitaLista(array) {
         cardBottom.classList.add("card-bottom");
         card.id = idUni;
         titleElement.innerHTML = titleRow;
-        cardButtons.innerHTML = '<button id=\"btnRemove\" onclick=\"removeThis('+idUni+')\" class=\"btnRemove\"><img src=\"stylesheets/trashbin.png\"></button><button id=\"btnEdit\" class=\"btnEdit\"><img src=\"stylesheets/pencil3.png\"></button>';
+        cardButtons.innerHTML = '<button onclick=\"removeThis('+idUni+')\" class=\"btnRemove\"><img src=\"stylesheets/trashbin.png\"></button><button class=\"btnEdit\"><img src=\"stylesheets/pencil3.png\"></button>';
         cardBottom.innerHTML = "<p>"+startRow+"-"+compRow + " " + inPRow+"</p>";
         cardText.append(cardButtons);
         cardText.append(titleElement);
@@ -95,17 +95,17 @@ function paivitaLista(array) {
         card.append(cardBottom);
         naytaLista.append(card);
 
-        card.onclick = function(e) {
-            if (e.target.id=="btnRemove" || e.target.id=="btnEdit") {
+        card.addEventListener("click", function(e) {
+            if (e.target.tagName == 'IMG' || e.target.tagName=="IMG") {
                 e.stopPropagation();
             } else {
             let modal = document.getElementById('myModal');
             document.getElementById('modalP').innerHTML = 
             "<h2>"+titleRow+"</h2><p>"+sourceRow+"<br>"+ descRow+"<br>Suunniteltu aika: "+timeTRow+"h<br>Käytetty aika: "+timeSRow+"h<br>"+startRow+" - "+compRow+"<br>"+inPRow+"</p>"
             modal.style.display = "block";
-            console.log(e.target.id)
+            console.log(e.target.tagName)
             }
-        }
+        });
     }
 
     naytaLista.innerHTML = "";
@@ -138,8 +138,6 @@ if (event.target == modal) {
 modal.style.display = "none";
     }
 }
-
-
 
 function checkCheck(check) {
     if (check == true) {
