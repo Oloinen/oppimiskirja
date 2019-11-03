@@ -5,6 +5,7 @@ CREATE TABLE topic (
     timetomaster INT,
     timespent INT,
     source VARCHAR(255),
-    startlearningdate TIMESTAMP,
+    startdate DATE,
+    completiondate DATE, 
     inprogress BOOLEAN
 );
